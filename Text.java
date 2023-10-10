@@ -1,16 +1,16 @@
 class Text{
-    private static int[] value = new int[]{
-        250,
-        -100,
-        100,
-        -20,
-        180,
-        0,
-        -70,
-        +60,
-        -80,
-        -50,
-        +650    
+    private static double[] value = new double[]{
+        250.0,
+        -100.0,
+        100.0,
+        -20.0,
+        180.0,
+        0.0,
+        -70.0,
+        +60.0,
+        -80.0,
+        -50.0,
+        +650.0    
     };
 
     private static String[] text = new String[]{
@@ -54,10 +54,10 @@ class Text{
     /* Gives the value of corresponding "field" or "roll sum", according to rules.
      * 
      * @param   sum: the sum of 2 dice roll
-     * @return  int value of corresponding field
+     * @return  double value of corresponding field
      */
-    public static int getValue(int sum){
-        int gold = value[sum - 2];
+    public static double getValue(int sum){
+        double gold = value[sum - 2];
         return gold;
     };
 
@@ -83,9 +83,11 @@ class Text{
      *          p1Name: name of player 1
      *          p2Name: name of player 2
      */
-    public static void showPoints(int p1, int p2, String p1Name, String p2Name){
+    public static void showPoints(double p1, double p2, String p1Name, String p2Name){
         //String[] firstSplit = pointText.split("#");
-        String showPoints = p1Name + pointText[0] + p1 + pointText[1] + p2Name + pointText[2] + p2 + pointText[3];
+        long p1Int = Math.round(p1);
+        long p2Int = Math.round(p2);
+        String showPoints = p1Name + pointText[0] + p1Int + pointText[1] + p2Name + pointText[2] + p2Int + pointText[3];
         System.out.println(showPoints); 
     }
 
