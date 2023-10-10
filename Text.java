@@ -1,5 +1,5 @@
 class Text{
-    private int[] value = new int[]{
+    private static int[] value = new int[]{
         250,
         -100,
         100,
@@ -13,7 +13,7 @@ class Text{
         +650    
     };
 
-    private String[] text = new String[]{
+    private static String[] text = new String[]{
         "Text 1",
         "Text 2",
         "Text 3",
@@ -27,25 +27,42 @@ class Text{
         "Text 11",
     };
     
-    private String rules = "Rules";
+    private static String rules = "Rules";
 
 
     /*
      * Text used to print out the total amount of points of each player.
-     * When translating, "!" and "#"
+     * When translating, "#" must not be modified.
      */
-    private static String pointText = 
-        "#" + " has " + "#" + " points\n" + 
-        "#" + " has " + "#" + " points";
 
-    private String winTest = "";
+    private static String[] pointText ={
+        // Player 1 name (entered in method)
+        " has ",
+        // Player 1 points (entered in method)
+        " points" + "\n",
+        // Player 2 name (entered in method)
+        " has ",
+        // Player 2 points (entered in method)
+        " points"
+    };
+
+    private static String[] winText = {
+        "Congratuælations! ",
+        // Winning player name (entered in method)
+        " has won the game." + "\n\n" + "Thank you for playing!"
+    };
+
+
+    /*
+     *      METHODS 
+     */
 
     /* Gives the value of corresponding "field" or "roll sum", according to rules.
      * 
      * @param   sum: the sum of 2 dice roll
      * @return  int value of corresponding field
      */
-    public int getValue(int sum){
+    public static int getValue(int sum){
         int gold = value[sum - 2];
         return gold;
     };
@@ -55,14 +72,14 @@ class Text{
      * @param   sum: the sum of 2 dice roll
      * @return  String of text of corresponding field
      */
-    public String getText(int sum){
+    public static String getText(int sum){
         String flavourText = text[sum -2];
         return flavourText;
     }
 
     /* Returns the rules text to be printed
      */
-    public String getRules(){
+    public static String getRules(){
         return rules;
     }
 
@@ -75,8 +92,8 @@ class Text{
      * @return  String of text displaying points of both players
      */
     public static String showPoints(int p1, int p2, String p1Name, String p2Name){
-        String[] firstSplit = pointText.split("#");
-        String ShowPoints = p1Name + firstSplit[1] + p1 + firstSplit[2] + p2Name + firstSplit[3] + p2 + firstSplit[4];
+        //String[] firstSplit = pointText.split("#");
+        String showPoints = p1Name + pointText[0] + p1 + pointText[1] + p2Name + pointText[2] + p2 + pointText[3];
         return showPoints; 
     }
 
@@ -85,8 +102,8 @@ class Text{
      * @param   pName: name of winning player
      * @return  String of text to display win
      */
-    public String winGame(String pName){
-        String winGame = "";
+    public static String winGame(String pName){
+        String winGame = winText[0] + pName + winText[1];
 
         return winGame;
     }
