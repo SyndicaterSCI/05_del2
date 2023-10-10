@@ -29,12 +29,6 @@ class Text{
     
     private static String rules = "Rules";
 
-
-    /*
-     * Text used to print out the total amount of points of each player.
-     * When translating, "#" must not be modified.
-     */
-
     private static String[] pointText ={
         // Player 1 name (entered in method)
         " has ",
@@ -47,7 +41,7 @@ class Text{
     };
 
     private static String[] winText = {
-        "Congratuælations! ",
+        "Congratulations! ",
         // Winning player name (entered in method)
         " has won the game." + "\n\n" + "Thank you for playing!"
     };
@@ -67,44 +61,41 @@ class Text{
         return gold;
     };
 
-    /* Gives the corresponding text to the sum rolled or "field".
+    /* Prints the corresponding text to the sum rolled or "field".
      * 
      * @param   sum: the sum of 2 dice roll
-     * @return  String of text of corresponding field
      */
-    public static String getText(int sum){
+    public static void printText(int sum){
         String flavourText = text[sum -2];
-        return flavourText;
+        System.out.println(flavourText);
     }
 
-    /* Returns the rules text to be printed
+    /* Prints the rules text
      */
-    public static String getRules(){
-        return rules;
+    public static void printRules(){
+        System.out.println(rules);
     }
 
-    /* Gives the text to be printed to display current points
+    /* Prints the amount of points of each player
      * 
      * @param   p1: points of player 1
      *          p2: points of player 2
      *          p1Name: name of player 1
      *          p2Name: name of player 2
-     * @return  String of text displaying points of both players
      */
-    public static String showPoints(int p1, int p2, String p1Name, String p2Name){
+    public static void showPoints(int p1, int p2, String p1Name, String p2Name){
         //String[] firstSplit = pointText.split("#");
         String showPoints = p1Name + pointText[0] + p1 + pointText[1] + p2Name + pointText[2] + p2 + pointText[3];
-        return showPoints; 
+        System.out.println(showPoints); 
     }
 
-    /* Generates text for win display
+    /* Prints text for win display
 
      * @param   pName: name of winning player
-     * @return  String of text to display win
      */
-    public static String winGame(String pName){
+    public static void winGame(String pName){
         String winGame = winText[0] + pName + winText[1];
 
-        return winGame;
+        System.out.println(winGame);
     }
 }
