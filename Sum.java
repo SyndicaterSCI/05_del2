@@ -1,15 +1,14 @@
 class Sum{
     public int sum;
-    public void rolle(){
-        var sum = 0;
+    public Sum(){
+        int sum = 0;
         var numberOfDice = 2;
-        var arr = new int[numberOfDice-1];
-        for (int i = 0; i>=arr.length; i++){
-            arr[i] = new Dice().faceValue;
-        }
-        for (int i = 0; i>arr.length; i++){
+        var arr = new int[numberOfDice]; //made an aray of dice sow it is esay to change the number of dice
+        for (int i = 0; i<arr.length; i++){
+            arr[i] = new Dice().getValue();
             sum += arr[i];
         }
+        this.sum = sum;
     }
     
     public int getSum(){
