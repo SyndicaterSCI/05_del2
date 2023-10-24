@@ -3,13 +3,13 @@ import java.util.Random;
 class Dice{
     public int faceValue;
 
-    //Generate a random number between 1 and 6, and sets the varibel "faceValue"
+    //Generate a random number between 1 and 6, and sets the variable "faceValue"
     public Dice(){
         var maxRoll = 6;
         var minRoll = 1;
         Random random = new Random();
         faceValue = random.nextInt((maxRoll-minRoll)+1)+minRoll;
-        // if you whant to be abele to role more then 6 chanse 6 to the whantet number 
+        // if you want to be able to roll more than 6 change 6 to the wanted number 
     }
 
     public int getValue(){
