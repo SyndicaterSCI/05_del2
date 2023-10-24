@@ -8,10 +8,12 @@ class DiceGame{
     private static double currentSum;
     private static boolean flag = true;
 
+
     public static void main(String[] args){
         creatDie();
         createPlayer();
 
+        // Cycles through both players
         for(int i = 1; flag; i++){
             if((i % 2) != 0){
                 roll(p1);
@@ -25,11 +27,13 @@ class DiceGame{
         }
     }
     
+    // Creates both dice to be used in game.
     public static void creatDie(){
         d1 = new Die(1,6);
         d1 = new Die(1,6);
     }
     
+    // Create both players with names, and prints game rules
     public static void createPlayer(){
         Text.printRules();
 
@@ -46,6 +50,10 @@ class DiceGame{
         input.close();
     }
 
+    /* Rolls dice and adds the corresponding amount of points/money to the player account.
+     * 
+     * @Param   player: the player which turn it is
+     */
     public static void roll(Player player){
         Scanner roller = new Scanner(System.in);
         Text.pressEnter();
@@ -60,6 +68,8 @@ class DiceGame{
         currentSum = d1Result + d2Result;
         double money = Text.getValue(currentSum);
         player.addSum(currentSum);
+
+        // Resets the players account to 0, if the account falls below.
         if(player.getBalance() < 0){
             player.setBalance(0);
         }
@@ -73,6 +83,10 @@ class DiceGame{
 
     }
 
+    /* Checks to see if player fullfills win conditions and stops the game if so.
+     * 
+     * @param   player: player of which turn it is
+     */
     public static void verifyWin(Player player){
         double playerPoint = player.getBalance();
         if(playerPoint >= 3000){
