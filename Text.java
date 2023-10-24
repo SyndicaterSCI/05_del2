@@ -29,6 +29,10 @@ class Text{
     
     private static String rules = "Rules";
 
+    private static String pressEnter = "Press enter to roll the dice";
+
+    private static String enterName = "Enter name of player "; // 1 or 2 (entered in method)
+
     private static String[] pointText ={
         // Player 1 name (entered in method)
         " has ",
@@ -60,6 +64,19 @@ class Text{
         double gold = value[sum - 2];
         return gold;
     };
+
+    /* Prints before each turn */
+    public static void pressEnter(){
+        System.out.println(pressEnter);
+    }
+
+    /* Prints the command for entering player name
+     * 
+     * @param   playerNumber: the number of the player being asked the name of
+     */
+    public static void printEnterName(int playerNumber){
+        System.out.println(enterName + playerNumber);
+    }
 
     /* Prints the corresponding text to the sum rolled or "field".
      * 
