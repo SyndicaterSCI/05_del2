@@ -5,8 +5,8 @@ class Dice{
 
     //Generate a random number between 1 and 6, and sets the variable "faceValue"
     public Dice(){
-        var maxRoll = 6;
-        var minRoll = 1;
+        int maxRoll = 6;
+        int minRoll = 1;
         Random random = new Random();
         faceValue = random.nextInt((maxRoll-minRoll)+1)+minRoll;
         // if you want to be able to roll more than 6 change 6 to the wanted number 
