@@ -6,17 +6,31 @@ class DiceGame{
     private static Die d1;
     private static Die d1;
     private static double currentSum;
+    private static boolean flag = true;
 
     public static void main(String[] args){
+        creatDie();
+        createPlayer();
 
+        for(int i = 1; flag; i++){
+            if((i % 2) != 0){
+                roll(p1);
+                Text.showPoints(p1.getBalance(), p2.getBalance(), p1.getName(), p1.getName())
+                verifyWin(p1);
+            }else if((i % 2) == 0){
+                roll(p2);
+                Text.showPoints(p1.getBalance(), p2.getBalance(), p1.getName(), p1.getName())
+                verifyWin(p2);
+            }
+        }
     }
     
-    public static creatDie(){
+    public static void creatDie(){
         d1 = new Die(1,6);
         d1 = new Die(1,6);
     }
     
-    public static createPlayer(){
+    public static void createPlayer(){
         Text.printRules();
 
         Scanner input = new Scanner(System.in);
@@ -32,16 +46,41 @@ class DiceGame{
         input.close();
     }
 
-    public static roll(Player player){
+    public static void roll(Player player){
+        Scanner roller = new Scanner(System.in);
+        Text.pressEnter();
+        roller.nextString();
+        roller.close();
+
         d1.roll();
         double d1Result = d1.getFacevalue();
         d2.roll();
         double d2Result = d2.getFacevalue();
 
         currentSum = d1Result + d2Result;
+        double money = Text.getValue(currentSum);
+        player.addSum(currentSum);
+        if(player.getBalance() < 0){
+            player.setBalance(0);
+        }
+        
+        Text.printText(currentSum);
+
+        // Restarts the roll function if player rolls 10.
+        if(currentSum == 10){
+            roll(player);
+        }
+
     }
 
-    
+    public static void verifyWin(Player player){
+        double playerPoint = player.getBalance();
+        if(playerPoint >= 3000){
+            Text.printWin(player.getName());
+            flag = false;
+        }
+
+    }
 
     
 }
