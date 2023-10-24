@@ -1,7 +1,7 @@
 public class account {
     
     //Should create a double that is "Balance"
-    public double balance = 0;
+    private double balance = 0;
 
     //Should get the balance from "Player" and then display it to the player
     public double getBalance() {
