@@ -5,7 +5,6 @@ class DiceGame{
     private static Player p2;
     private static Die d1;
     private static Die d1;
-    private static double currentSum;
     private static boolean flag = true;
 
 
@@ -65,7 +64,7 @@ class DiceGame{
         d2.roll();
         double d2Result = d2.getFacevalue();
 
-        currentSum = d1Result + d2Result;
+        double currentSum = d1Result + d2Result;
         double money = Text.getValue(currentSum);
         player.addSum(currentSum);
 
