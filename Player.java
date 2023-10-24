@@ -25,17 +25,17 @@ public class Player {
     }
 
     // Metode til at tilføje point til spillerens konto
-    public void addSum(double amount) {
-        if (amount > 0) {
-            balance += amount;
+    public void addSum(double money) {
+        if (money > 0) {
+            balance += money;
         }
 
     }
 
     // Metode til at trække point fra spillerens konto
-    public void subtractSum(double amount) {
-        if (amount > 0 && balance >= amount) {
-            balance -= amount;
+    public void subtractSum(double money) {
+        if (money > 0 && balance >= money) {
+            balance -= money;
 
         }
     }
