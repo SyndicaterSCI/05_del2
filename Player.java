@@ -1,12 +1,16 @@
 public class Player {
 
-    private double balance;
+    private Account account;
     private String playerName;
 
     // Konstruktør for at oprette en ny spiller
-    public Player(String playerName, double initialBalance) {
+    public Player(String playerName) {
         this.playerName = playerName;
-        this.balance = initialBalance;
+        createAccount();
+    }
+
+    private void createAccount() {
+        account = new Account();
     }
 
     // Metode til at få spillerens navn
@@ -21,23 +25,20 @@ public class Player {
 
     // Metode til at få spillerens balance
     public double getBalance() {
-        return balance;
+        return account.getBalance();
+
     }
 
     // Metode til at tilføje point til spillerens konto
     public void addSum(double money) {
-        if (money > 0) {
-            balance += money;
-        }
+        account.addSum(money);
 
     }
 
     // Metode til at trække point fra spillerens konto
     public void subtractSum(double money) {
-        if (money > 0 && balance >= money) {
-            balance -= money;
+        account.subtractSum(money);
 
-        }
     }
 
     // Metode til at udskrive spillerens oplysninger
