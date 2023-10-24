@@ -8,8 +8,8 @@ class Die{
     private int max;
 
     public Die(int min, int max){
-        this.min = min; //the min value of the die write wen you call die
-        this.max = max; //the max value of the die write wen you call die
+        this.min = min; //the min value of the die write when you call die
+        this.max = max; //the max value of the die write when you call die
     }
 
     //Generate a random number between max and min and give it to "faceValue"
