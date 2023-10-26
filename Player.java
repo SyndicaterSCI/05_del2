@@ -48,6 +48,6 @@ class Player {
     // Metode til at udskrive spillerens oplysninger
     public void displayPlayerInfo() {
         System.out.println("Playername: " + playerName);
-        System.out.println("Score: " + balance);
+        System.out.println("Score: " + account.getBalance());
     }
 }
