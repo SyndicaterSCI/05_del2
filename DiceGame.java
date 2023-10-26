@@ -41,10 +41,12 @@ class DiceGame{
         Text.printEnterName(1);
         String p1Name = input.nextLine();
         p1 = new Player(p1Name);
+        p1.setBalance(1000);
 
         Text.printEnterName(2);
         String p2Name = input.nextLine();
         p2 = new Player(p2Name);
+        p2.setBalance(1000);
 
         
     }
