@@ -46,7 +46,7 @@ class DiceGame{
         String p2Name = input.nextLine();
         p2 = new Player(p2Name);
 
-        input.close();
+        
     }
 
     /* Rolls dice and adds the corresponding amount of points/money to the player account.
@@ -59,7 +59,7 @@ class DiceGame{
         Text.pressEnter(); // Prompt the user to press Enter
         Scanner input = new Scanner(System.in);
         String enter = input.nextLine(); // Wait for the user to press Enter
-        input.close();
+        
 
         
         d1.roll();
