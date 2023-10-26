@@ -1,4 +1,4 @@
-public class Player {
+class Player {
 
     private Account account;
     private String playerName;
@@ -10,17 +10,21 @@ public class Player {
     }
 
     private void createAccount() {
-        account = new Account();
+        this.account = new Account();
     }
 
     // Metode til at få spillerens navn
-    public String getPlayerName() {
+    public String getName() {
         return playerName;
     }
 
     // Metode til at ændre spillerens navn
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public void setBalance(double money){
+        account.setBalance(money);
     }
 
     // Metode til at få spillerens balance

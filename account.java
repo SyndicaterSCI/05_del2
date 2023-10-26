@@ -1,7 +1,11 @@
-public class account {
+class Account {
     
     //Should create a double that is "Balance"
     private double balance = 0;
+
+    public Account(){
+        this.balance = 0;
+    }
 
     //Should get the balance from "Player" and then display it to the player
     public double getBalance() {

@@ -3,7 +3,7 @@ import java.util.Random;
 import javax.management.relation.Role;
 
 class Die{
-    public int faceValue;
+    private int faceValue;
     private int min;
     private int max;
 
