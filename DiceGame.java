@@ -1,52 +1,37 @@
 import java.util.Scanner;
 
 class DiceGame{
-    private static Player p1;
-    private static Player p2;
-    private static Die d1;
-    private static Die d2;
-    private static boolean flag = true;
-
-
-    public static void main(String[] args){
-        creatDie();
-        createPlayer();
-
-        // Cycles through both players
-        for(int i = 1; flag; i++){
-            if((i % 2) != 0){
-                roll(p1);
-                Text.showPoints(p1.getBalance(), p2.getBalance(), p1.getName(), p2.getName());
-                verifyWin(p1);
-            }else if((i % 2) == 0){
-                roll(p2);
-                Text.showPoints(p1.getBalance(), p2.getBalance(), p1.getName(), p2.getName());
-                verifyWin(p2);
-            }
-        }
-    }
+    private Player[] players;
+    private Die d1;
+    private Die d2;
+    private boolean flag = true;
     
+    public boolean getFlag(){
+        return flag;
+    }
+
     // Creates both dice to be used in game.
-    public static void creatDie(){
+    public void creatDie(){
         d1 = new Die(1,6);
         d2 = new Die(1,6);
     }
     
     // Create both players with names, and prints game rules
-    public static void createPlayer(){
+    public void createPlayer(){
+        players = new Player[2];
         Text.printRules();
 
         Scanner input = new Scanner(System.in);
 
         Text.printEnterName(1);
         String p1Name = input.nextLine();
-        p1 = new Player(p1Name);
-        p1.setBalance(1000);
+        players[0] = new Player(p1Name);
+        players[0].setBalance(1000);
 
         Text.printEnterName(2);
         String p2Name = input.nextLine();
-        p2 = new Player(p2Name);
-        p2.setBalance(1000);
+        players[1] = new Player(p2Name);
+        players[1].setBalance(1000);
 
         
     }
@@ -55,9 +40,8 @@ class DiceGame{
      * 
      * @Param   player: the player which turn it is
      */
-    public static void roll(Player player){
-
-
+    public void roll(int playerNumber){
+        
         Text.pressEnter(); // Prompt the user to press Enter
         Scanner input = new Scanner(System.in);
         String enter = input.nextLine(); // Wait for the user to press Enter
@@ -71,30 +55,34 @@ class DiceGame{
 
         int currentSum = d1Result + d2Result;
         double money = Text.getValue(currentSum);
-        player.addSum(money);
+        players[playerNumber - 1].addSum(money);
 
         // Resets the players account to 0, if the account falls below.
-        if(player.getBalance() < 0){
-            player.setBalance(0);
+        if(players[playerNumber - 1].getBalance() < 0){
+            players[playerNumber - 1].setBalance(0);
         }
         
         Text.printText(currentSum);
 
         // Restarts the roll function if player rolls 10.
         if(currentSum == 10){
-            roll(player);
+            roll(playerNumber);
         }
         
+    }
+
+    public void displayPoints(){
+        Text.showPoints(players[0].getBalance(), players[1].getBalance(), players[0].getName(), players[1].getName());
     }
 
     /* Checks to see if player fullfills win conditions and stops the game if so.
      * 
      * @param   player: player of which turn it is
      */
-    public static void verifyWin(Player player){
-        double playerPoint = player.getBalance();
+    public void verifyWin(int playerNumber){
+        double playerPoint = players[playerNumber - 1].getBalance();
         if(playerPoint >= 3000){
-            Text.winGame(player.getName());
+            Text.winGame(players[playerNumber - 1].getName());
             flag = false;
         }
 
