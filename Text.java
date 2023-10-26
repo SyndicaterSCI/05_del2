@@ -27,7 +27,7 @@ class Text{
         "\nYou're on your daily stroll, when you see something glistening in the distance. You \n approach and see that it's a goldmine, and it seems that there's no one else here. You go \n over and grab all the gold you can carry and go home. Once you go home, you get to \n counting it, and see that you've managed to find 650 gold. YOU'RE RICH."
     };
     
-    private static String rules = "\nRules";
+    private static String rules = "\nWelcome to the dicegame (:\n This is a two player game.\n To start the game, enter your names and press enter each time you want to roll the dice.\n You start with 1000 gold each, and your goal is to reach 3000 gold first.\n";
 
     private static String pressEnter = "\nPress enter to roll the dice";
 
