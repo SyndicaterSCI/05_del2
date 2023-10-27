@@ -120,6 +120,74 @@ class DiceGame{
             String playerName = input.nextLine();
             players[i].setPlayerName(playerName);
         }
+
+    }
+
+    /* Returns the balance of player 'n'
+     * 
+     * @param   playerNumber: the number of the player
+     */
+    public double getPlayerBalance(int playerNumber){
+        double playerBalance = players[playerNumber - 1].getBalance();
+        return playerBalance;
+    }
+
+    /* Returns the name of player 'n'
+     * 
+     * @param   playerNumber: the number of the player
+     */
+    public String getPlayerName(int playerNumber){
+        String playerName = players[playerNumber - 1].getName();
+        return playerName;
+    }
+
+    /* Set the name of player 'n'
+     * 
+     * @param   playerName: name of the player 'n'
+     *          playerNumber: the number of the player 'n'
+     */
+    public void setPlayerName(String playerName, int playerNumber){
+        players[playerNumber - 1].setPlayerName(playerName);
+    }
+
+    /* Set the balance of player 'n'
+     * 
+     * @param   playerBalance: initial balance of the player 'n'
+     *          playerNumber: the number of the player 'n'
+     */
+    public void setPlayerBalance(double playerBalance, int playerNumber){
+        players[playerNumber - 1].setBalance(playerBalance);
+    }
+
+    /* One method to rule them all. One method to find them all and in darkness, bind them */
+    public void play(){
+        Text.printRules();
+        creatDie();
+        createPlayerArr();
+
+        recievePlayerNameInput();
+
+        for(int i = 1; flag; i++){
+            if(i > numberOfPlayers){
+                i = 1;
+            }
+            Text.printTurn(players[i-1].getName());
+            askForEnter(i);
+            displayPoints();
+            verifyWin(i);
+        }
+
+    }
+
+    /* Recieves input from consol to set player names */
+    public void recievePlayerNameInput(){
+        Scanner input = new Scanner(System.in);
+
+        for(int i = 0; i < players.length; i++){
+            Text.printEnterName(i + 1);
+            String playerName = input.nextLine();
+            players[i].setPlayerName(playerName);
+        }
     }
 
     // Creates both dice to be used in game.
@@ -152,6 +220,7 @@ class DiceGame{
         if(currentSum == 10){
             askForEnter(playerNumber);
         }
+
     }
 
     /* Rolls dice and adds the corresponding amount of points/money to the player account.
@@ -190,6 +259,7 @@ class DiceGame{
         if(playerPoint >= 3000){
             Text.winGame(getPlayerName(playerNumber));
             playerWin = true;
+
         }
         return playerWin;
 
