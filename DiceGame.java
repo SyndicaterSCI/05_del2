@@ -5,9 +5,60 @@ class DiceGame{
     private Die d1;
     private Die d2;
     private boolean flag = true;
+    private int numberOfPlayers;
     
+    public DiceGame(int numberOfPlayers){
+        this.numberOfPlayers = numberOfPlayers;
+    }
+
     public boolean getFlag(){
         return flag;
+    }
+
+    public double getPlayerBalance(int playerNumber){
+        double playerBalance = players[playerNumber - 1].getBalance();
+        return playerBalance;
+    }
+
+    public String getPlayerName(int playerNumber){
+        String playerName = players[playerNumber - 1].getName();
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName, int playerNumber){
+        players[playerNumber - 1].setPlayerName(playerName);
+    }
+
+    public void setPlayerBalance(double playerBalance, int playerNumber){
+        players[playerNumber - 1].setBalance(playerBalance);
+    }
+
+    public void play(){
+        Text.printRules();
+        creatDie();
+        createPlayerArr();
+
+        recievePlayerNameInput();
+
+        for(int i = 1; flag; i++){
+            if(i > numberOfPlayers){
+                i = 1;
+            }
+            askForEnter(i);
+            displayPoints();
+            verifyWin(i);
+        }
+
+    }
+
+    public void recievePlayerNameInput(){
+        Scanner input = new Scanner(System.in);
+
+        for(int i = 0; i < players.length; i++){
+            Text.printEnterName(i + 1);
+            String playerName = input.nextLine();
+            players[i].setPlayerName(playerName);
+        }
     }
 
     // Creates both dice to be used in game.
@@ -17,23 +68,23 @@ class DiceGame{
     }
     
     // Create both players with names, and prints game rules
-    public void createPlayer(){
-        players = new Player[2];
-        Text.printRules();
-
-        Scanner input = new Scanner(System.in);
-
-        Text.printEnterName(1);
-        String p1Name = input.nextLine();
-        players[0] = new Player(p1Name);
-        players[0].setBalance(1000);
-
-        Text.printEnterName(2);
-        String p2Name = input.nextLine();
-        players[1] = new Player(p2Name);
-        players[1].setBalance(1000);
+    public void createPlayerArr(){
+        players = new Player[numberOfPlayers];
+        for(int i = 0; i < players.length; i++){
+            String placeholderName = "Player " + (i + 1);
+            players[i] = new Player(placeholderName);
+            players[i].setBalance(1000);
+        }
 
         
+    }
+
+    public void askForEnter(int playerNumber){
+        Text.pressEnter(); // Prompt the user to press Enter
+        Scanner input = new Scanner(System.in);
+        String enter = input.nextLine(); // Wait for the user to press Enter
+
+        roll(playerNumber);
     }
 
     /* Rolls dice and adds the corresponding amount of points/money to the player account.
@@ -41,13 +92,6 @@ class DiceGame{
      * @Param   player: the player which turn it is
      */
     public void roll(int playerNumber){
-        
-        Text.pressEnter(); // Prompt the user to press Enter
-        Scanner input = new Scanner(System.in);
-        String enter = input.nextLine(); // Wait for the user to press Enter
-        
-
-        
         d1.roll();
         int d1Result = d1.getFaceValue();
         d2.roll();
@@ -72,7 +116,11 @@ class DiceGame{
     }
 
     public void displayPoints(){
-        Text.showPoints(players[0].getBalance(), players[1].getBalance(), players[0].getName(), players[1].getName());
+        System.out.println("\n");
+        for(int i = 0; i < players.length; i++){
+            Text.showPoints(players[i].getBalance(), players[i].getName());    
+        }
+        System.out.println("\n");
     }
 
     /* Checks to see if player fullfills win conditions and stops the game if so.
@@ -80,9 +128,9 @@ class DiceGame{
      * @param   player: player of which turn it is
      */
     public void verifyWin(int playerNumber){
-        double playerPoint = players[playerNumber - 1].getBalance();
+        double playerPoint = getPlayerBalance(playerNumber);
         if(playerPoint >= 3000){
-            Text.winGame(players[playerNumber - 1].getName());
+            Text.winGame(getPlayerName(playerNumber));
             flag = false;
         }
 

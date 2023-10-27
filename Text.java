@@ -100,11 +100,10 @@ class Text{
      *          p1Name: name of player 1
      *          p2Name: name of player 2
      */
-    public static void showPoints(double p1, double p2, String p1Name, String p2Name){
+    public static void showPoints(double p1, String p1Name){
         //String[] firstSplit = pointText.split("#");
         long p1Int = Math.round(p1);
-        long p2Int = Math.round(p2);
-        String showPoints = "\n" + p1Name + pointText[0] + p1Int + pointText[1] + p2Name + pointText[2] + p2Int + pointText[3];
+        String showPoints = p1Name + pointText[0] + p1Int + pointText[1];
         System.out.println(showPoints); 
     }
 
