@@ -50,6 +50,8 @@ class Text{
         " has won the game." + "\n\n" + "Thank you for playing!"
     };
 
+    private static String playerTurn = "\nTurn of "; // Player name added in method
+
 
     /*
      *      METHODS 
@@ -105,6 +107,15 @@ class Text{
         long p1Int = Math.round(p1);
         String showPoints = p1Name + pointText[0] + p1Int + pointText[1];
         System.out.println(showPoints); 
+    }
+
+    /* Prints text for who's turn it is
+
+     * @param   playerName: name of player
+     */
+    public static void printTurn(String playerName){
+        String turn = playerTurn + playerName;
+        System.out.println(turn);
     }
 
     /* Prints text for win display
