@@ -3,7 +3,7 @@ class Player {
     private Account account;
     private String playerName;
 
-    // Konstruktør for at oprette en ny spiller
+    // Constructor for a new Player
     public Player(String playerName) {
         this.playerName = playerName;
         createAccount();
@@ -13,12 +13,12 @@ class Player {
         this.account = new Account();
     }
 
-    // Metode til at få spillerens navn
+    // Method to get a playername and return it
     public String getName() {
         return playerName;
     }
 
-    // Metode til at ændre spillerens navn
+    // Method to set/change a PlayerName
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
@@ -27,25 +27,25 @@ class Player {
         account.setBalance(money);
     }
 
-    // Metode til at få spillerens balance
+    // Method to get the players balance and return it
     public double getBalance() {
         return account.getBalance();
 
     }
 
-    // Metode til at tilføje point til spillerens konto
+    // Method to add money/points to Player accoutn
     public void addSum(double money) {
         account.addSum(money);
 
     }
 
-    // Metode til at trække point fra spillerens konto
+    // Method to subtract money/sum from Players account
     public void subtractSum(double money) {
         account.subtractSum(money);
 
     }
 
-    // Metode til at udskrive spillerens oplysninger
+    // Method to print Player info
     public void displayPlayerInfo() {
         System.out.println("Playername: " + playerName);
         System.out.println("Score: " + account.getBalance());
